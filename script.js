@@ -1,16 +1,21 @@
+// Get user's choice and make it case insensitive
 let playerSelection = prompt("What will you play?", "");
+playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+
+// Get computer's choice
 let computerSelection = getComputerChoice();
 
-// Choose the computer's option randomly (Rock: 0, Paper: 1, Scissors: 2)
+// Choose the computer's option randomly
 function getComputerChoice() {
     let selected = Math.floor(Math.random() * 3);
 
+    // Change value to the actual words
     if (selected === 0) {
-        selected = "rock";
+        selected = "Rock";
     } else if (selected === 1) {
-        selected = "paper";
+        selected = "Paper";
     } else {
-        selected = "scissors";
+        selected = "Scissors";
     }
 
     return selected;
