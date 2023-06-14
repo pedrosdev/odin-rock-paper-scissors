@@ -20,3 +20,17 @@ function getComputerChoice() {
 
     return selected;
 }
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return `${playerSelection} vs ${computerSelection}. That's a draw!`;
+    } else if (
+        playerSelection === "Rock" && computerSelection === "Scissors" ||
+        playerSelection === "Paper" && computerSelection === "Rock" ||
+        playerSelection === "Scissors" && computerSelection === "Paper"
+    ) {
+        return `${playerSelection} beats ${computerSelection}. You won!`;
+    } else {
+        return `${computerSelection} beats ${playerSelection}. You lost!`;
+    }
+}
