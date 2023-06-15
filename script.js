@@ -1,3 +1,4 @@
+// Implement a 5 round game of Rock Paper Scissors
 function game() {
     // Keep track of the scores
     let playerScore = 0;
@@ -11,53 +12,65 @@ function game() {
         // Get computer's choice
         let computerSelection = getComputerChoice();
 
+        // Get result of the current round
         let roundResult = playRound(playerSelection, computerSelection);
-        console.log(roundResult);
 
-        if (roundResult.includes("won")) {
+        // Print result message
+        if (roundResult === 1) {
+            console.log(`${playerSelection} beats ${computerSelection}. You won!`);
             playerScore++;
-        } else if (roundResult.includes("lost")) {
+        } else if (roundResult === 0) {
+            console.log(`${playerSelection} vs ${computerSelection}. That's a draw!`);
+        } else {
+            console.log(`${computerSelection} beats ${playerSelection}. You lost!`);
             computerScore++;
         }
     }
 
+    printGameResult(playerScore, computerScore);
+}
+
+game();
+
+// Choose the computer's option randomly
+function getComputerChoice() {
+    let selected = Math.floor(Math.random() * 3);
+
+    // Change value to the actual words
+    if (selected === 0) {
+        return "Rock";
+    } else if (selected === 1) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+}
+
+// Compute the result of a single round of Rock Paper Scissors
+function playRound(playerSelection, computerSelection) {
+    if (
+        playerSelection === "Rock" && computerSelection === "Scissors" ||
+        playerSelection === "Paper" && computerSelection === "Rock" ||
+        playerSelection === "Scissors" && computerSelection === "Paper"
+    ) {
+        // Player won
+        return 1;
+    } else if (playerSelection === computerSelection) {
+        // Draw
+        return 0;
+    } else {
+        // Player lost
+        return -1;
+    }
+}
+
+// Print the result of a game to the console
+function printGameResult(playerScore, computerScore) {
     if (playerScore > computerScore) {
         console.log(`Congratulations! You won by ${playerScore} x ${computerScore}!`);
     } else if (playerScore < computerScore) {
         console.log(`Ha-ha! You lost by ${playerScore} x ${computerScore}!`);
     } else {
         console.log("A draw... Not that interesting, huh?");
-    }
-
-    // Choose the computer's option randomly
-    function getComputerChoice() {
-        let selected = Math.floor(Math.random() * 3);
-
-        // Change value to the actual words
-        if (selected === 0) {
-            selected = "Rock";
-        } else if (selected === 1) {
-            selected = "Paper";
-        } else {
-            selected = "Scissors";
-        }
-
-        return selected;
-    }
-
-    function playRound(playerSelection, computerSelection) {
-        if (playerSelection === computerSelection) {
-            return `${playerSelection} vs ${computerSelection}. That's a draw!`;
-        } else if (
-            playerSelection === "Rock" && computerSelection === "Scissors" ||
-            playerSelection === "Paper" && computerSelection === "Rock" ||
-            playerSelection === "Scissors" && computerSelection === "Paper"
-        ) {
-            return `${playerSelection} beats ${computerSelection}. You won!`;
-        } else {
-            return `${computerSelection} beats ${playerSelection}. You lost!`;
-        }
-    }
+    }    
 }
-
-game();
