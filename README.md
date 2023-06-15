@@ -1,7 +1,9 @@
 
 # Introduction
 
-Page to play Rock Paper Scissors (now it only works through the console, GUI to be added later).
+Rock Paper Scissors game.
+
+__Obs:__ for now, it only works through the browser's console, GUI to be added later.
 
 ## Learning goals:
 
@@ -11,4 +13,4 @@ Page to play Rock Paper Scissors (now it only works through the console, GUI to 
 ## Skills:
 
  - Basic JavaScript syntax
- - Debugging through the browser's Developer Tools
+ - Debugging in Developer Tools
