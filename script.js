@@ -1,21 +1,28 @@
+const playBtn = document.querySelector(".play-btn");
 const options = document.querySelectorAll(".option");
-const resultWindow = document.getElementById("result-window");
+const outcomeWindow = document.getElementById("outcome");
+
+// Keep track of the scores
+let playerScore = 0;
+let computerScore = 0;
+
+// Game starts
+playBtn.addEventListener("click", () => {
+  const instructionsContainer = document.querySelector("#instructions");
+  const summaryScreen = document.querySelector(".summary");
+  const optionsContainer = options[0].parentElement;
+
+  instructionsContainer.textContent = "Choose your weapon!";
+  summaryScreen.classList.toggle("hidden");
+  playBtn.classList.toggle("on-screen");
+  optionsContainer.classList.toggle("on-screen");
+});
 
 options.forEach((option) => {
   option.addEventListener("click", playRound)
 });
 
-let playerScore = 0;
-let computerScore = 0;
-
-// Choose the computer's option randomly
-function getComputerChoice() {
-  let selected = Math.floor(Math.random() * 3);
-
-  return ["Rock", "Paper", "Scissors"][selected];
-}
-
-// Compute the result of a single round of Rock Paper Scissors
+// Play a single round of Rock Paper Scissors
 function playRound(e) {
   // Get computer's choice
   let computerSelection = getComputerChoice();
@@ -31,6 +38,13 @@ function playRound(e) {
   } else {
     showRoundResult(playerSelection, computerSelection, roundResult);
   }
+}
+
+// Choose the computer's option randomly
+function getComputerChoice() {
+  let selected = Math.floor(Math.random() * 3);
+
+  return ["Rock", "Paper", "Scissors"][selected];
 }
 
 function getRoundResult(playerSelection, computerSelection) {
@@ -59,7 +73,7 @@ function updateScores(roundResult) {
 
   // Show current scores
   const scoresContainer = document.getElementById("scores");
-  scoresContainer.textContent = `You | ${playerScore} x ${computerScore} | Computer`;
+  scoresContainer.textContent = `You ${playerScore} vs ${computerScore} Computer`;
 
   return (playerScore > computerScore) ? playerScore : computerScore;
 }
@@ -68,14 +82,17 @@ function showRoundResult(playerSelection, computerSelection, roundResult) {
   let message = '';
 
   if (roundResult === 1) {
-    message = `${playerSelection} beats ${computerSelection}. You won!`;  
+    message = `I'll go with ${computerSelection}.<br>${playerSelection} beats 
+    ${computerSelection}.<br>You won!`;  
   } else if (roundResult === 0) {
-    message = `${playerSelection} vs ${computerSelection}. That's a draw!`;
+    message = `I choose ${computerSelection}.<br>${playerSelection} vs 
+    ${computerSelection}.<br>That's a draw!`;
   } else {
-    message = `${computerSelection} beats ${playerSelection}. You lost!`;
+    message = `${computerSelection}!<br>${computerSelection} beats 
+    ${playerSelection}.<br>You lost!`;
   }
 
-  resultWindow.textContent = message;
+  outcomeWindow.innerHTML = message;
 }
 
 // Print the result of a game to the console
@@ -89,7 +106,7 @@ function finishGame() {
     message = "A draw... Not that interesting, huh?";
   }
 
-  resultWindow.textContent = message;
+  outcomeWindow.textContent = message;
 
   // Reset scores after end of each game
   playerScore = 0;

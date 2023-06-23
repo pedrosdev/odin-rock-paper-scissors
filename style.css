@@ -34,6 +34,7 @@ body {
 .game-screen {
   flex-basis: 320px;
   flex-direction: column;
+  text-shadow: 0.12em 0.12em black;
 }
 
 h1 {
@@ -45,7 +46,7 @@ h1 {
   font-size: 20px;
 }
 
-#summary {
+.summary {
   flex-basis: 100%;
   flex-direction: column;
 }
