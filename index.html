@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Odin | Rock Paper Scissors</title>
-        <script src="./script.js" defer></script>
-    </head>
-    <body>
-        <div id="scores"></div>
-        <div id="result-window"></div>
-        <button class="option">Rock</button>
-        <button class="option">Paper</button>
-        <button class="option">Scissors</button>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin | Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+  </head>
+  <body class="flex">
+    <div class="wrapper flex">
+      <div class="game-screen flex">
+        <h1>Rock Paper Scissors</h1>
+        <div id="instructions">Press the button to start</div>
+        <div id="summary" class="flex hidden">
+          <div id="scores-container" class="flex">
+            <div id="scores">
+              <span>You</span> 0 vs 0 <span>Computer</span>
+            </div>
+          </div>
+          <div id="outcome" class="flex"></div>
+        </div>
+      </div>
+
+      <!-- Player controls -->
+      <div class="controls flex">
+        <button class="play-btn on-screen">Play</button>
+        <div class="option-container">
+          <button class="option">Rock</button>
+          <button class="option">Paper</button>
+          <button class="option">Scissors</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
